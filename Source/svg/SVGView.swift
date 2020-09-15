@@ -6,11 +6,17 @@ import UIKit
 import AppKit
 #endif
 
-open class SVGView: MacawView {
+@objc open class SVGView: MacawView {
 
-    @IBInspectable open var fileName: String? {
+    @objc @IBInspectable open var fileName: String? {
         didSet {
             node = (try? SVGParser.parse(resource: fileName ?? "")) ?? Group()
+        }
+    }
+    
+    @objc @IBInspectable open var content: String? {
+        didSet {
+            node = (try? SVGParser.parse(text: content ?? "")) ?? Group()
         }
     }
 
